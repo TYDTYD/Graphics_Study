@@ -1,0 +1,4 @@
+﻿  init.cpp
+C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\init\init.cpp(3,1): warning C4005: 'UNICODE': macro redefinition
+C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\init\init.cpp(3,1): message : 'UNICODE' previously declared on the command line
+  init.vcxproj -> C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\x64\Debug\init.exe
