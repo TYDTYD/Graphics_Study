@@ -44,7 +44,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
         winClass.lpszClassName = L"MyWindowClass";
         winClass.hIconSm = LoadIconW(0, IDI_APPLICATION);
 
-        if (!RegisterClassExW(&winClass)) {
+        if (!RegisterClassExW(&winClass)) { // 윈도우 커널 등록되었는지 확인하는 코드
             MessageBoxA(0, "RegisterClassEx failed", "Fatal Error", MB_OK);
             return GetLastError();
         }
@@ -94,7 +94,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
         // Get 1.1 interface of D3D11 Device and Context
         hResult = baseDevice->QueryInterface(__uuidof(ID3D11Device1), (void**)&d3d11Device);
         assert(SUCCEEDED(hResult));
-        baseDevice->Release();
+        baseDevice->Release();// 메모리 할당 해제
 
         hResult = baseDeviceContext->QueryInterface(__uuidof(ID3D11DeviceContext1), (void**)&d3d11DeviceContext);
         assert(SUCCEEDED(hResult));
@@ -160,7 +160,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
         HRESULT hResult = dxgiFactory->CreateSwapChainForHwnd(d3d11Device, hwnd, &d3d11SwapChainDesc, 0, 0, &d3d11SwapChain);
         assert(SUCCEEDED(hResult));
 
-        dxgiFactory->Release();
+        dxgiFactory->Release();// 메모리 할당 해제
     }
 
     // Create Framebuffer Render Target
@@ -172,7 +172,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
 
         hResult = d3d11Device->CreateRenderTargetView(d3d11FrameBuffer, 0, &d3d11FrameBufferView);
         assert(SUCCEEDED(hResult));
-        d3d11FrameBuffer->Release();
+        d3d11FrameBuffer->Release(); // 메모리 할당 해제
     }
 
     // Main Loop
@@ -180,7 +180,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
     while (isRunning)
     {
         MSG msg = {};
-        while (PeekMessageW(&msg, 0, 0, 0, PM_REMOVE))
+        // 메세지가 없으면 getMessage는 리턴값이 없음  이 단점을 피크메세지가 대체
+        while (PeekMessageW(&msg, 0, 0, 0, PM_REMOVE)) // peekmessage는 메세지가 없더라도 즉각 리턴하는 형식 
         {
             if (msg.message == WM_QUIT)
                 isRunning = false;
@@ -191,7 +192,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
         FLOAT backgroundColor[4] = { 0.1f, 0.2f, 0.6f, 1.0f };
         d3d11DeviceContext->ClearRenderTargetView(d3d11FrameBufferView, backgroundColor);
 
-        d3d11SwapChain->Present(1, 0);
+        d3d11SwapChain->Present(1, 0); // 스왑체인 백버퍼와 프론트버퍼를 바꿔끼는 함수
     }
 
     return 0;

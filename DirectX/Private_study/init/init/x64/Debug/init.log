@@ -1,4 +1,4 @@
 ﻿  init.cpp
-C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\init\init.cpp(3,1): warning C4005: 'UNICODE': macro redefinition
-C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\init\init.cpp(3,1): message : 'UNICODE' previously declared on the command line
-  init.vcxproj -> C:\Users\pc\OneDrive\문서\GitHub\Private_study\init\x64\Debug\init.exe
+C:\Users\samsung\Documents\GitHub\Graphics_Study\DirectX\Private_study\init\init\init.cpp(3,1): warning C4005: 'UNICODE': 매크로 재정의
+C:\Users\samsung\Documents\GitHub\Graphics_Study\DirectX\Private_study\init\init\init.cpp : message : 'UNICODE'의 이전 정의를 참조하십시오.
+  init.vcxproj -> C:\Users\samsung\Documents\GitHub\Graphics_Study\DirectX\Private_study\init\x64\Debug\init.exe
