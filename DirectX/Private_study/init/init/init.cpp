@@ -126,6 +126,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpC
         {
             IDXGIDevice1* dxgiDevice;
             HRESULT hResult = d3d11Device->QueryInterface(__uuidof(IDXGIDevice1), (void**)&dxgiDevice);
+            // hResult가 존재하는지 확인하는 구문 디버깅
             assert(SUCCEEDED(hResult));
 
             IDXGIAdapter* dxgiAdapter;
